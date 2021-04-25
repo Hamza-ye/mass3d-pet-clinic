@@ -3,7 +3,7 @@ package mass3d.springframework.mass3dpetclinic.model;
 /**
  * Created by Hamza on 25/04/2021.
  */
-public class Person {
+public class Person extends BaseEntity{
     private String firstName;
     private String lastName;
 
