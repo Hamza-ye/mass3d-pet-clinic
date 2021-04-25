@@ -14,7 +14,7 @@
     </parent>
     <groupId>mass3d.springframework</groupId>
     <artifactId>mass3d-pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>mass3d-pet-clinic</name>
     <description>Mass3d Pet Clinic Project</description>
     <properties>
@@ -50,7 +50,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/Hamza-ye/mass3d-pet-clinic.git</developerConnection>
-      <tag>mass3d-pet-clinic-0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
