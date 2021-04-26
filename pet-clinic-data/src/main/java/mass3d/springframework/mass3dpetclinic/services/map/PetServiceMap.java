@@ -1,12 +1,12 @@
 package mass3d.springframework.mass3dpetclinic.services.map;
 
 import mass3d.springframework.mass3dpetclinic.model.Pet;
-import mass3d.springframework.mass3dpetclinic.services.CrudService;
+import mass3d.springframework.mass3dpetclinic.services.PetService;
 
 /**
  * Created by Hamza on 26/04/2021.
  */
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Pet save(Pet object) {
         return super.save(object.getId(), object);
