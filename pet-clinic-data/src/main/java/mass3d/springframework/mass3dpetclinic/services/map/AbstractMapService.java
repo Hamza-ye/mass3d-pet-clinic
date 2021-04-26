@@ -1,16 +1,15 @@
 package mass3d.springframework.mass3dpetclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import mass3d.springframework.mass3dpetclinic.model.BaseEntity;
+
+import java.util.*;
 
 /**
  * Created by Hamza on 26/04/2021.
  */
-public class AbstractMapService<T, ID> {
+public class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
-    Map<ID, T> map = new HashMap<>();
+    Map<Long , T> map = new HashMap<>();
 
     public Set<T> findAll(){
         return new HashSet<>(map.values());
@@ -20,8 +19,13 @@ public class AbstractMapService<T, ID> {
         return map.get(id);
     }
 
-    public T save(ID id, T object){
-        map.put(id, object);
+    public T save(T object){
+        if (object != null) {
+            if (object.getId() == null) object.setId(getNextId());
+            map.put(object.getId(), object);
+        } else {
+            throw new RuntimeException("Object cannot be null");
+        }
         return object;
     }
 
@@ -31,5 +35,9 @@ public class AbstractMapService<T, ID> {
 
     public void deleteById(ID id){
         map.remove(id);
+    }
+
+    private Long getNextId(){
+        return (map.isEmpty() ? 0L : Collections.max(map.keySet())) + 1;
     }
 }
