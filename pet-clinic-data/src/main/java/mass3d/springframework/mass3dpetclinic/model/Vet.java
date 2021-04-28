@@ -1,5 +1,6 @@
 package mass3d.springframework.mass3dpetclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Set;
  */
 public class Vet extends Person {
 
-    Set<Specialty> specialties;
+    Set<Specialty> specialties = new HashSet<>();
 
     public Set<Specialty> getSpecialties() {
         return specialties;
