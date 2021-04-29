@@ -1,10 +1,18 @@
 package mass3d.springframework.mass3dpetclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
 /**
  * Created by Hamza on 25/04/2021.
  */
+@MappedSuperclass
 public class Person extends BaseEntity{
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
 
     public String getFirstName() {
