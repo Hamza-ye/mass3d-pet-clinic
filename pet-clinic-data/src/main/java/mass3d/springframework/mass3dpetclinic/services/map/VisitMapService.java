@@ -2,10 +2,12 @@ package mass3d.springframework.mass3dpetclinic.services.map;
 
 import mass3d.springframework.mass3dpetclinic.model.Visit;
 import mass3d.springframework.mass3dpetclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Hamza on 01/05/2021.
  */
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
