@@ -4,12 +4,14 @@ import mass3d.springframework.mass3dpetclinic.model.Specialty;
 import mass3d.springframework.mass3dpetclinic.model.Vet;
 import mass3d.springframework.mass3dpetclinic.services.SpecialityService;
 import mass3d.springframework.mass3dpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by Hamza on 26/04/2021.
  */
 @Service
+@Profile({"default", "map"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialityService specialityService;
