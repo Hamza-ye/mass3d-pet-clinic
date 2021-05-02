@@ -11,3 +11,7 @@ workflows:
   maven_test:
     jobs:
       - maven/test
+      - store_test_results:
+          paths:
+            - ~/mass3d-pet-clinic/pet-clinic-data/target/surefire-reports
+            - ~/mass3d-pet-clinic/pet-clinic-web/target/surefire-reports
