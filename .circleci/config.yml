@@ -3,8 +3,9 @@ version: 2.1
 orbs:
   maven: circleci/maven@1.1
 
-build:
-  working_directory: ../
+jobs:
+  build:
+    working_directory: ~/mass3d-pet-clinic
 
 workflows:
   maven_test:
