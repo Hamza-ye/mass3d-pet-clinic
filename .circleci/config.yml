@@ -3,9 +3,10 @@ version: 2.1
 orbs:
   maven: circleci/maven@1.1
 
+build:
+  working_directory: ../
+
 workflows:
   maven_test:
-    build:
-      working_directory: ../
     jobs:
       - maven/test
