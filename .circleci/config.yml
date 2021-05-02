@@ -3,15 +3,7 @@ version: 2.1
 orbs:
   maven: circleci/maven@1.1
 
-executors:
-  my-executor:
-    working_directory: ~/mass3d-pet-clinic
-
 workflows:
   maven_test:
     jobs:
       - maven/test
-      - store_test_results:
-          paths:
-            - ~/mass3d-pet-clinic/pet-clinic-data/target/surefire-reports
-            - ~/mass3d-pet-clinic/pet-clinic-web/target/surefire-reports
