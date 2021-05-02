@@ -1,5 +1,5 @@
 
-# Spring Framework Guru Pet Clinic
+# Implementation for the Classic Spring Framework Pet Clinic
 
 This repo is for the online course
 
