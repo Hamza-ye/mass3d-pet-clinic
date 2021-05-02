@@ -6,5 +6,4 @@ orbs:
 workflows:
   maven_test:
     jobs:
-      working_directory: ~/mass3d-pet-clinic
       - maven/test
