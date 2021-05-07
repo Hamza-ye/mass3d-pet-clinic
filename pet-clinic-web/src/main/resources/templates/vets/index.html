@@ -20,7 +20,7 @@
     <tr th:each="vet : ${vets}">
         <td th:text="${vet?.id}"/>
         <td>
-            <a th:href="@{/owners/__${vet?.id}__}" th:text="${vet?.firstName + ' ' + vet?.lastName}"/></a>
+            <a th:href="@{/vets/__${vet?.id}__}" th:text="${vet?.firstName + ' ' + vet?.lastName}"/></a>
         </td>
         <td th:text="${vet?.firstName}"/>
         <td th:text="${vet?.lastName}"/>
