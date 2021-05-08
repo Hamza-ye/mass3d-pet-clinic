@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 public class PetType extends BaseEntity{
 
@@ -21,5 +20,10 @@ public class PetType extends BaseEntity{
     public PetType(Long id, String name) {
         super(id);
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
