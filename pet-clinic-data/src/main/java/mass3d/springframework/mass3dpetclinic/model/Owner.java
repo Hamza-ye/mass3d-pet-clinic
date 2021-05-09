@@ -4,12 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Hamza on 25/04/2021.
@@ -48,7 +49,7 @@ public class Owner extends Person {
      */
     public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
-        for (Pet pet : pets) {
+        for (Pet pet : getPetsInternal()) {
             if (!ignoreNew || !pet.isNew()) {
                 String compName = pet.getName();
                 compName = compName.toLowerCase();
@@ -58,5 +59,25 @@ public class Owner extends Person {
             }
         }
         return null;
+    }
+
+    protected Set<Pet> getPetsInternal() {
+        if (this.pets == null) {
+            this.pets = new HashSet<>();
+        }
+        return this.pets;
+    }
+
+    public List<Pet> getPets() {
+        List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
+        PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
+        return Collections.unmodifiableList(sortedPets);
+    }
+
+    public void addPet(Pet pet) {
+        if (pet.isNew()) {
+            getPetsInternal().add(pet);
+        }
+        pet.setOwner(this);
     }
 }

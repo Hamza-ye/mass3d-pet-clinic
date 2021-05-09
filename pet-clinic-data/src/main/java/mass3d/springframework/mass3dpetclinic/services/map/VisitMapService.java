@@ -5,6 +5,8 @@ import mass3d.springframework.mass3dpetclinic.services.VisitService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Hamza on 01/05/2021.
  */
@@ -20,5 +22,10 @@ public class VisitMapService extends AbstractMapService<Visit, Long> implements 
             throw new RuntimeException("Invalid Visit");
 
         return super.save(object);
+    }
+
+    @Override
+    public List<Visit> findByPetId(Long petId) {
+        return null;
     }
 }

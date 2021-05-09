@@ -52,10 +52,10 @@ public class VisitController {
     @ModelAttribute("visit")
     public Visit loadPetWithVisit(@PathVariable("petId") Long petId, Map<String, Object> model) {
         Pet pet = petService.findById(petId);
+        pet.setVisitsInternal(this.visitService.findByPetId(petId));
         model.put("pet", pet);
         Visit visit = new Visit();
-        pet.getVisits().add(visit);
-        visit.setPet(pet);
+        pet.addVisit(visit);
         return visit;
     }
 

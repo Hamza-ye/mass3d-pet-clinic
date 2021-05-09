@@ -1,11 +1,12 @@
 package mass3d.springframework.mass3dpetclinic.model;
 
 import lombok.*;
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Hamza on 25/04/2021.
@@ -30,7 +31,7 @@ public class Pet extends BaseEntity{
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
-    private Set<Visit> visits = new HashSet<>();
+    private Set<Visit> visits;
 
     @Builder
     public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
@@ -41,5 +42,27 @@ public class Pet extends BaseEntity{
         this.birthDate = birthDate;
         if (visits != null)
             this.visits = visits;
+    }
+
+    protected Set<Visit> getVisitsInternal() {
+        if (this.visits == null) {
+            this.visits = new HashSet<>();
+        }
+        return this.visits;
+    }
+
+    public void setVisitsInternal(Collection<Visit> visits) {
+        this.visits = new LinkedHashSet<>(visits);
+    }
+
+    public List<Visit> getVisits() {
+        List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
+        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
+        return Collections.unmodifiableList(sortedVisits);
+    }
+
+    public void addVisit(Visit visit) {
+        getVisitsInternal().add(visit);
+        visit.setPet(this);
     }
 }
